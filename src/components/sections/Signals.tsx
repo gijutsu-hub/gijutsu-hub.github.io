@@ -155,9 +155,12 @@ export default function Signals({ index }: { index: string }) {
         </div>
       </div>
 
+      {/* The snapshot date stays — it tells a reader how current these numbers
+          are. The command to refresh it does not; that is for whoever
+          maintains the site, and it was briefly rendered to visitors. */}
       <p className="mt-10 font-mono text-xs text-ink-faint">
-        GitHub snapshot taken {new Date(snapshot.fetchedAt).toISOString().slice(0, 10)} ·{" "}
-        {stars} stars across curated repositories · refresh with <code>npm run github</code>
+        GitHub figures as of {new Date(snapshot.fetchedAt).toISOString().slice(0, 10)} ·{" "}
+        {stars} stars across curated repositories
       </p>
     </Section>
   );

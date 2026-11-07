@@ -128,7 +128,17 @@ export default function RepoDirectory({ index }: { index: string }) {
         ))}
       </div>
 
-      {/* CVE register. Structure is live; identifiers are not published. */}
+      {/*
+        CVE register.
+
+        Identifiers are intentionally unpublished — a settled decision, not a
+        gap. The renderer for a linked table already exists in
+        src/content/research.ts; populating `research.cves` there makes it
+        appear, each row pointing at its NVD record.
+
+        That instruction belongs here and not on the page. It was briefly
+        rendered as visitor-facing copy, which read as an unfinished site.
+      */}
       <div className="mt-14">
         <h3 className="font-display text-2xl">CVE register</h3>
         <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">
@@ -147,15 +157,8 @@ export default function RepoDirectory({ index }: { index: string }) {
           </div>
 
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-dim text-pretty">
-            CVE and CWE identifiers are public, permanently indexed records — anyone can check
-            one against nvd.nist.gov in seconds. Listing them here is a decision to invite that
-            scrutiny, and it has not been taken. The counts stand; the numbers are available on
-            request.
-          </p>
-
-          <p className="mt-4 font-mono text-xs text-ink-faint">
-            Populate <code>research.cves</code> in src/content/research.ts and the table renders
-            itself, each row linking to its NVD record.
+            Identifiers are shared on request rather than listed here. Each is a public NVD
+            record and confirmable in seconds by anyone evaluating the work.
           </p>
         </div>
       </div>
