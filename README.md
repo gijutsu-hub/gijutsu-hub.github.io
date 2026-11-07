@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# gijutsu-hub — portfolio
 
-## Getting Started
+Personal site for Sumon Nath. Next.js 16 (App Router), React 19, Tailwind 4,
+Three.js via react-three-fiber. Statically exported at build time — there is no
+server runtime, no database and no API.
 
-First, run the development server:
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build (regenerates both resume PDFs first)
+npm run resume  # regenerate both resume PDFs only
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  content/        All site copy, as typed data. Edit the site here.
+  components/
+    hero/         Hero section and the WebGL scene
+    sections/     One component per page section
+    ui/           Nav, Footer, Section shell, Tag
+  lib/
+    graph.ts      Generates the 3D graph geometry
+    hooks.ts      Media queries, in-view, active section, WebGL detection
+    webgl.ts      WebGL capability probe
+  app/
+    globals.css   Design tokens and base styles
+    layout.tsx    Metadata, fonts, JSON-LD
+    page.tsx      Section order
+    resume/       Web view of the resume
+scripts/
+  build-resume-pdf.ts   Entry point: builds both PDFs
+  resume/render.ts      Shared layout engine
+  resume/theme.ts       ATS and portfolio themes
+assets/
+  fonts/                TTFs embedded in the themed PDF
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Copy is not in the components.** Everything the page says lives in
+`src/content` as typed objects. To change a job description, a capability row
+or a skill list, edit the matching file there — the components only render it.
 
-## Learn More
+## The resumes
 
-To learn more about Next.js, take a look at the following resources:
+`src/content/resume.ts` is the single source for the `/resume` page and both
+PDFs. `npm run resume` regenerates them; `prebuild` runs it automatically, so
+the files cannot drift from the content.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| File | For | Build |
+| --- | --- | --- |
+| `Sumon-Nath-Resume.pdf` | Job portals and recruiters. **The default download.** | White, single column, Helvetica, no embedded fonts |
+| `Sumon-Nath-Resume-Portfolio.pdf` | Sending to a person who already knows who you are | Dark, matches the site, embedded Lato and DejaVu Sans Mono |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Same content, same layout engine (`scripts/resume/render.ts`), different theme
+(`scripts/resume/theme.ts`).
 
-## Deploy on Vercel
+### Why the ATS file is not the site's theme
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Applicant tracking systems extract the text layer and discard presentation,
+but the humans downstream print and skim it.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Choice | Reason |
+| --- | --- |
+| White background | Printing. A dark PDF either burns toner or prints white-on-white where the driver drops backgrounds. |
+| Single column, no tables | Parsers read multi-column and table layouts out of order, or not at all. |
+| Helvetica | One of the 14 standard PDF fonts: no embedding, no glyph-to-character mapping failures. |
+| Standard headings | "Work Experience", not "Track record". Parsers match headings against a fixed vocabulary. |
+| Acronyms expanded | A filter on "penetration testing" will not match a document that only says "VAPT". |
+| Contact details in the body | Text in a real PDF header region is frequently dropped. |
+
+Colour is safe either way — parsers read characters, not fills — so the teal
+accent survives on both.
+
+Verify any change with `pdftotext public/Sumon-Nath-Resume.pdf -`, which shows
+roughly what a parser sees. Both files are checked this way; the themed one
+extracts correctly too, because its embedded fonts carry proper character maps.
+
+### Fonts
+
+`assets/fonts/` holds the five TTFs the themed PDF embeds, committed rather
+than read from the host so the build is reproducible on a CI runner or deploy
+host with no system fonts. Both families are permissively licensed — see
+`assets/fonts/README.md`. If they go missing the build falls back to Helvetica
+with a warning rather than failing.
+
+## The hero scene
+
+`src/lib/graph.ts` generates an attack-surface graph at runtime: nodes on a
+Fibonacci sphere, edges between near neighbours, and packets that travel real
+edge adjacency rather than a baked path. Nothing is downloaded as a model, so
+the scene costs a few KB of code instead of a few MB of asset.
+
+It degrades in three stages:
+
+| Condition | Result |
+| --- | --- |
+| No WebGL (disabled, blocklisted GPU, hardened browser) | Static CSS fallback |
+| `prefers-reduced-motion: reduce` | Scene renders, frozen |
+| Narrow viewport or coarse pointer | 90 nodes / 20 packets instead of 160 / 46 |
+
+The scene is `aria-hidden` and `pointer-events: none`. It carries no
+information, so nothing is lost when it does not render.
+
+## Things to change before this goes live
+
+- **Client names.** `src/content/experience.ts` describes clients by sector
+  rather than naming them. Most engagement contracts forbid publishing a client
+  list. Confirm the MSAs before swapping names in.
+- **Open Graph image.** `app/layout.tsx` declares `summary_large_image` but no
+  image exists yet. Add `src/app/opengraph-image.png` (1200×630) and Next will
+  wire it up automatically.
+- **Canonical URL.** Add `metadataBase` to the metadata export once the domain
+  is decided, or absolute OG URLs will not resolve.
+- **Speaking engagement.** `src/content/research.ts` says "including by
+  Microsoft" without naming the event. A named event and year is stronger.
+
+CVE and CWE identifiers are intentionally not listed — see the note at the top
+of `src/content/research.ts`. The counts render without them.
+
+## Known advisory
+
+`npm audit` reports 8 moderate findings, all one root cause: a `minimatch` ReDoS
+reachable only through `typescript-eslint`, a devDependency. It is not in the
+shipped bundle. `npm audit fix --force` downgrades `eslint-config-next` to v15,
+which is a worse trade. Revisit when the upstream chain updates.

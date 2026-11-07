@@ -1,26 +1,170 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Design tokens
+
+   One accent (teal) carries interaction and emphasis. One secondary (indigo)
+   appears only in the 3D scene and in gradients, never as a text colour. Signal
+   red is reserved for the "Lead" depth marker and nothing else — if everything
+   is highlighted, nothing is.
+
+   The palette is deliberately low-chroma outside the accent. Security sites
+   drown in neon; restraint reads as competence.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-void: #05070a;
+  --color-base: #080b10;
+  --color-surface: #0c1016;
+  --color-raised: #111720;
+  --color-line: #1b2330;
+  --color-line-bright: #2a3444;
+
+  --color-ink: #e8eef5;
+  --color-ink-dim: #9aa8b8;
+  --color-ink-faint: #64717f;
+
+  --color-accent: #45e0c8;
+  --color-accent-dim: #2ba894;
+  --color-accent-glow: #45e0c81a;
+  --color-signal: #ff7a66;
+  --color-indigo: #7c8cff;
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the sticky header never covers a heading. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-void);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Faint engineering grid. Masked so it fades rather than ending on a hard
+     line, which would read as a rendering bug. */
+  .grid-field {
+    background-image:
+      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+  }
+
+  .rule-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  /* A hairline that brightens toward the accent at its left edge. Used to mark
+     section starts without a heavy border. */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--color-accent) 0%,
+      var(--color-line-bright) 12%,
+      var(--color-line) 40%,
+      transparent 100%
+    );
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Honour the OS setting. Everything below is decoration; none of it carries
+   meaning that is lost when it stops. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Keyframes
+-------------------------------------------------------------------------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.reveal {
+  animation: revealUp 700ms var(--ease-out-expo) both;
 }

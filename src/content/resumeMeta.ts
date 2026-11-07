@@ -1,0 +1,35 @@
+/**
+ * The two published resume files.
+ *
+ * `ats` is the default everywhere. The themed file exists because it looks
+ * like the rest of the site, not because it is better — uploading it to a job
+ * portal is the one way to make this worse than having a single file, so
+ * every label says plainly which is which.
+ */
+
+export interface ResumeVariant {
+  href: string;
+  /** Browsers use this as the saved filename. */
+  download: string;
+  label: string;
+  /** Shown beside the link. Says what the file is for. */
+  note: string;
+}
+
+export const resumeVariants = {
+  ats: {
+    href: "/Sumon-Nath-Resume.pdf",
+    download: "Sumon-Nath-Resume.pdf",
+    label: "Download resume",
+    note: "PDF · 2 pages · ATS-friendly",
+  },
+  themed: {
+    href: "/Sumon-Nath-Resume-Portfolio.pdf",
+    download: "Sumon-Nath-Resume-Portfolio.pdf",
+    label: "Themed version",
+    note: "Same content, designed to match this site. Send it to a person, not a job portal.",
+  },
+} satisfies Record<string, ResumeVariant>;
+
+/** The default download used in the nav, hero and contact block. */
+export const resumeFile = resumeVariants.ats;
