@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import PageNav from "@/components/ui/PageNav";
 import Projects from "@/components/sections/Projects";
+import Publications from "@/components/sections/Publications";
 import Research from "@/components/sections/Research";
 import { routeByHref } from "@/content/routes";
 
@@ -23,8 +24,9 @@ export default function Page() {
         title={route.title}
         lede={route.description}
       />
-      <Projects index="01" />
-      <Research index="02" />
+      <Publications index="01" />
+      <Projects index="02" />
+      <Research index="03" />
       <PageNav href={route.href} />
     </>
   );

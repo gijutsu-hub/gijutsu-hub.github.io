@@ -4,6 +4,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import PageNav from "@/components/ui/PageNav";
 import AttackMatrix from "@/components/sections/AttackMatrix";
 import Scoring from "@/components/sections/Scoring";
+import TopologyGallery from "@/components/sections/TopologyGallery";
 import { routeByHref } from "@/content/routes";
 
 const route = routeByHref("/method")!;
@@ -24,7 +25,8 @@ export default function Page() {
         lede={route.description}
       />
       <AttackMatrix index="01" />
-      <Scoring index="02" />
+      <TopologyGallery index="02" />
+      <Scoring index="03" />
       <PageNav href={route.href} />
     </>
   );

@@ -62,7 +62,7 @@ export const routes: RouteDef[] = [
     title: "Work & research",
     eyebrow: "Build",
     description:
-      "Platforms and tooling built end to end, vulnerability disclosure, and the events behind the CTF work.",
+      "A peer-reviewed Springer chapter, platforms and tooling built end to end, and the disclosure record.",
   },
   {
     href: "/concept",
