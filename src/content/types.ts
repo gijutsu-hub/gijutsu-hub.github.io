@@ -44,8 +44,16 @@ export interface Role {
   highlights: string[];
 }
 
+/**
+ * How far a project actually got. Stated on every card, so a concept sitting
+ * beside shipped work cannot be mistaken for shipped work — and so the label
+ * on the concept does not read as defensive.
+ */
+export type ProjectStage = "Built" | "Research" | "Concept";
+
 export interface Project {
   name: string;
+  stage: ProjectStage;
   tagline: string;
   url?: string;
   description: string;

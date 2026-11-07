@@ -82,7 +82,7 @@ function VectorChips({ vector }: { vector: string }) {
       {parts.map((part) => (
         <span
           key={part.key}
-          className="group/chip inline-flex items-baseline gap-1 border border-line bg-base px-2 py-1 transition-colors hover:border-accent/40"
+          className="group/chip inline-flex items-baseline gap-1 border border-line bg-panel px-2 py-1 transition-colors hover:border-accent/40"
           title={`${METRICS.find((m) => m.key === part.key)?.name}: ${part.label}`}
         >
           <span className="font-mono text-[0.625rem] text-ink-faint">{part.key}</span>
@@ -109,7 +109,7 @@ export default function Scoring({ index }: { index: string }) {
     >
       <div className="grid gap-px border border-line bg-line lg:grid-cols-[minmax(0,19rem)_minmax(0,1fr)]">
         {/* Selector */}
-        <div className="flex flex-col bg-base">
+        <div className="flex flex-col bg-panel">
           <p className="rule-label border-b border-line px-5 py-3">Vulnerability class</p>
           {examples.map((item, i) => (
             <button
@@ -141,7 +141,7 @@ export default function Scoring({ index }: { index: string }) {
         </div>
 
         {/* Detail */}
-        <div className="bg-base p-6 lg:p-8">
+        <div className="bg-panel p-6 lg:p-8">
           <ScoreGauge score={example.score} severity={example.severity} />
 
           <div className={`mt-6 border-l-2 ${colors.border} pl-4`}>

@@ -134,7 +134,7 @@ export default function Research({ index }: { index: string }) {
 
         <div className="mt-8 grid gap-px border border-line bg-line lg:grid-cols-3">
           {events.map((event) => (
-            <article key={event.name} className="flex flex-col bg-base p-6 lg:p-7">
+            <article key={event.name} className="flex flex-col bg-panel p-6 lg:p-7">
               <div className="flex items-start justify-between gap-3">
                 <h4 className="font-display text-lg">{event.name}</h4>
                 {event.weight && (
@@ -188,7 +188,7 @@ export default function Research({ index }: { index: string }) {
         <h3 className="font-display text-2xl">Recognition</h3>
         <div className="mt-6 grid gap-px border border-line bg-line sm:grid-cols-2">
           {recognition.map((item) => (
-            <article key={item.title} className="bg-base p-6 lg:p-7">
+            <article key={item.title} className="bg-panel p-6 lg:p-7">
               {item.period && <p className="rule-label mb-3">{item.period}</p>}
               <h4 className="font-display text-lg leading-snug">{item.title}</h4>
               <p className="mt-3 text-sm leading-relaxed text-ink-dim text-pretty">

@@ -11,9 +11,19 @@
    The palette is deliberately low-chroma outside the accent. Security sites
    drown in neon; restraint reads as competence.
 --------------------------------------------------------------------------- */
+/*
+ * NAMING: do not name a colour token after a Tailwind size scale.
+ *
+ * `--color-base` generated a `text-base` COLOUR utility that collided with
+ * Tailwind's built-in `text-base` FONT-SIZE utility. Both set a property on
+ * the same class name, the colour one won, and every element using
+ * `text-base` for sizing was silently painted #080b10 — invisible against the
+ * page. No build error, no lint warning; it only shows if you read a computed
+ * style. The token is `--color-panel` for that reason.
+ */
 @theme {
   --color-void: #05070a;
-  --color-base: #080b10;
+  --color-panel: #080b10;
   --color-surface: #0c1016;
   --color-raised: #111720;
   --color-line: #1b2330;

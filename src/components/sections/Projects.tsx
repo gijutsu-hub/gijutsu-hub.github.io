@@ -26,7 +26,7 @@ export default function Projects({ index }: { index: string }) {
     >
       <div className="grid gap-px border border-line bg-line lg:grid-cols-2">
         {projects.map((project) => (
-          <article key={project.name} className="flex flex-col bg-base p-7 lg:p-9">
+          <article key={project.name} className="flex flex-col bg-panel p-7 lg:p-9">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h3 className="font-display text-xl">
@@ -46,6 +46,17 @@ export default function Projects({ index }: { index: string }) {
                 </h3>
                 <p className="mt-1 font-mono text-xs text-accent">{project.tagline}</p>
               </div>
+              <span
+                className={`shrink-0 border px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-wider ${
+                  project.stage === "Built"
+                    ? "border-accent/35 bg-accent/10 text-accent"
+                    : project.stage === "Research"
+                      ? "border-indigo/35 bg-indigo/10 text-indigo"
+                      : "border-line-bright text-ink-faint"
+                }`}
+              >
+                {project.stage}
+              </span>
             </div>
 
             <p className="mt-5 leading-relaxed text-ink-dim text-pretty">{project.description}</p>

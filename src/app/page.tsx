@@ -5,6 +5,7 @@ import Contact from "@/components/sections/Contact";
 import DisciplineBlock from "@/components/sections/DisciplineBlock";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
+import ProjectWorld from "@/components/sections/ProjectWorld";
 import Research from "@/components/sections/Research";
 import Scoring from "@/components/sections/Scoring";
 import Skills from "@/components/sections/Skills";
@@ -34,6 +35,7 @@ export default function Home() {
       <Scoring index={next()} />
       <Experience index={next()} />
       <Projects index={next()} />
+      <ProjectWorld index={next()} />
       <Skills index={next()} />
       <Research index={next()} />
       <Contact index={next()} />

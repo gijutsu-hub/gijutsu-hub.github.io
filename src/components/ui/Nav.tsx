@@ -13,6 +13,7 @@ const LINKS = [
   { id: "appsec", label: "AppSec" },
   { id: "attack", label: "ATT&CK" },
   { id: "projects", label: "Work" },
+  { id: "project-world", label: "Concept" },
   { id: "research", label: "Research" },
   { id: "contact", label: "Contact" },
 ];

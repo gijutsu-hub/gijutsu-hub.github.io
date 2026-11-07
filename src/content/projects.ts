@@ -3,6 +3,7 @@ import type { Project } from "./types";
 export const projects: Project[] = [
   {
     name: "CtrlSec",
+    stage: "Built",
     tagline: "AI-powered autonomous security operations platform",
     url: "https://ctrlsec.io",
     description:
@@ -16,6 +17,7 @@ export const projects: Project[] = [
   },
   {
     name: "AI-SAST Scanner",
+    stage: "Research",
     tagline: "Deep-learning cross-function vulnerability detection",
     description:
       "A static analysis engine that learns taint flow between functions rather than matching patterns within them — covering 35 vulnerability classes across 9 programming languages.",
@@ -28,6 +30,7 @@ export const projects: Project[] = [
   },
   {
     name: "Recon & attack-surface automation",
+    stage: "Built",
     tagline: "Continuous external exposure monitoring",
     description:
       "Large-scale reconnaissance pipelines that give clients a live view of external exposure rather than a point-in-time snapshot.",
@@ -40,6 +43,7 @@ export const projects: Project[] = [
   },
   {
     name: "Offensive tooling & exploit research",
+    stage: "Built",
     tagline: "Bespoke payloads, loaders and CVE reproduction",
     description:
       "In-house tradecraft developed for engagements where commercial tooling is detected or blocked, plus reproduction of disclosed CVEs as deterministic proof-of-concept exploits.",

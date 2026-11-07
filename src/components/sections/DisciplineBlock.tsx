@@ -20,7 +20,7 @@ export default function DisciplineBlock({
         {discipline.points.map((point) => (
           <article
             key={point.heading}
-            className="group bg-base p-6 transition-colors hover:bg-surface lg:p-8"
+            className="group bg-panel p-6 transition-colors hover:bg-surface lg:p-8"
           >
             <h3 className="flex items-start gap-3 font-display text-lg leading-snug">
               <span
