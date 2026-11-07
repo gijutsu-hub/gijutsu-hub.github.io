@@ -1,0 +1,74 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets you redeploy from the Actions tab without pushing a commit.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  # Required by deploy-pages: it exchanges an OIDC token rather than a secret.
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it mid-publish, but keep
+# only one queued behind it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # `ci` not `install`: installs exactly what package-lock.json pins and
+      # fails if the lockfile and package.json disagree.
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npx eslint .
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      # prebuild regenerates both resume PDFs from src/content/resume.ts, so
+      # the deployed files always match the committed content.
+      - name: Build
+        run: npm run build
+
+      # The PDFs are committed, but the build rewrites them. If the output
+      # differs, the committed copies are stale and the deployed site would
+      # disagree with the repository.
+      - name: Check committed PDFs are current
+        run: |
+          if ! git diff --quiet -- public; then
+            echo "::error::Committed resume PDFs differ from the build output."
+            echo "Run 'npm run resume' and commit the result."
+            git diff --stat -- public
+            exit 1
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

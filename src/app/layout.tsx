@@ -97,10 +97,22 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
-      >
+    /*
+     * The next/font variable classes go on <html>, not <body>.
+     *
+     * globals.css defines --font-display on :root as
+     * `var(--font-space-grotesk), ...`. If --font-space-grotesk is only
+     * declared on <body>, that var() is unresolvable at :root, which makes
+     * --font-display invalid there — and custom properties inherit their
+     * computed value, so every descendant inherits the invalid one rather
+     * than re-resolving it. Everything silently falls back to system fonts
+     * with no error anywhere.
+     */
+    <html
+      lang="en"
+      className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="antialiased">
         <script
           type="application/ld+json"
           // Static, authored above — not user input.
