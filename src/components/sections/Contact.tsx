@@ -27,10 +27,6 @@ export default function Contact({ index }: { index: string }) {
               testing work, come with the asset list and the constraints — scoping conversations
               go faster when the boundaries are on the table first.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <BookCall />
-            </div>
-
             <p className="mt-6 max-w-lg text-sm leading-relaxed text-ink-faint">
               All work is authorised and scoped under written rules of engagement. I do not test
               systems without the owner&apos;s documented permission.
@@ -43,6 +39,15 @@ export default function Contact({ index }: { index: string }) {
               <span className="h-2 w-2 rounded-full bg-line-bright" />
               <span className="h-2 w-2 rounded-full bg-line-bright" />
               <span className="ml-2 font-mono text-xs text-ink-faint">contact</span>
+            </div>
+
+            <div className="border-b border-line p-5">
+              <p className="rule-label mb-3">Fastest route</p>
+              <BookCall />
+              <p className="mt-3 text-xs leading-relaxed text-ink-faint">
+                Opens a scheduler here on the page. Pick a slot and it is booked — no email
+                thread to agree a time.
+              </p>
             </div>
 
             <dl className="divide-y divide-line">
