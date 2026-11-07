@@ -1,4 +1,6 @@
+import DownloadButton from "@/components/ui/DownloadButton";
 import Section from "@/components/ui/Section";
+import { paperVariants } from "@/content/resumeMeta";
 import { projectWorld as pw } from "@/content/projectWorld";
 
 /**
@@ -64,7 +66,19 @@ export default function ProjectWorld({ index }: { index: string }) {
         </span>
       </div>
 
+      <div className="mt-7 flex flex-wrap items-center gap-3">
+        <DownloadButton file={paperVariants.light} />
+        <DownloadButton variant="ghost" file={paperVariants.dark} />
+        <span className="font-mono text-xs text-ink-faint">{paperVariants.light.note}</span>
+      </div>
+
       <p className="mt-8 max-w-3xl leading-relaxed text-ink-dim text-pretty">{pw.premise}</p>
+
+      <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-faint text-pretty">
+        The paper states its limits explicitly: it makes no claim that the design guarantees
+        price stability, reduces resource use, removes debt, makes conflict impossible, or that
+        an allocator could price goods fairly. Those are research questions in it, not results.
+      </p>
 
       {/* Credit types */}
       <h3 className="rule-label mt-14 mb-5">Purpose-bound credits</h3>

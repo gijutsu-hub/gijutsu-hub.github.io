@@ -8,9 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "resume": "tsx scripts/build-resume-pdf.ts",
-    "prebuild": "npm run resume",
+    "prebuild": "npm run resume && npm run paper",
     "github": "tsx scripts/fetch-github.ts",
-    "youtube": "tsx scripts/fetch-youtube.ts"
+    "youtube": "tsx scripts/fetch-youtube.ts",
+    "paper": "tsx scripts/build-paper-pdf.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

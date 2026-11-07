@@ -33,3 +33,22 @@ export const resumeVariants = {
 
 /** The default download used in the nav, hero and contact block. */
 export const resumeFile = resumeVariants.ats;
+
+/**
+ * The Project World paper. Same two-variant pattern as the resume: the light
+ * file is the one to read, print or send; the dark one matches the site.
+ */
+export const paperVariants = {
+  light: {
+    href: "/Project-World-Paper.pdf",
+    download: "Project-World-Paper.pdf",
+    label: "Download paper",
+    note: "PDF \u00b7 9 pages \u00b7 conceptual proposal",
+  },
+  dark: {
+    href: "/Project-World-Paper-Dark.pdf",
+    download: "Project-World-Paper-Dark.pdf",
+    label: "Themed version",
+    note: "Same paper, styled to match this site.",
+  },
+} satisfies Record<string, ResumeVariant>;
