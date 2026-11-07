@@ -73,6 +73,14 @@ export const routes: RouteDef[] = [
       "A white paper on a physics-bound economy — and, more usefully, what would break if anyone tried it.",
   },
   {
+    href: "/research",
+    label: "Research",
+    title: "Research & source",
+    eyebrow: "Open source",
+    description:
+      "Curated repositories, the CVE register, and charts drawn from the site's own data rather than invented statistics.",
+  },
+  {
     href: "/contact",
     label: "Contact",
     title: "Contact",

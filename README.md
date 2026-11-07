@@ -141,6 +141,22 @@ It degrades in three stages:
 The scene is `aria-hidden` and `pointer-events: none`. It carries no
 information, so nothing is lost when it does not render.
 
+## GitHub data
+
+`npm run github` fetches live figures for the curated repositories into
+`src/content/github.generated.json`, which is committed. The build reads that
+file rather than calling the API.
+
+That is deliberate: fetching during `next build` would make every deploy depend
+on api.github.com being reachable and under its rate limit, and an
+unauthenticated Actions runner gets 60 requests an hour shared across GitHub's
+whole IP range. The snapshot carries its own fetch date, which the page shows —
+stale data that admits it is stale beats fresh data that sometimes fails the
+deploy.
+
+The account has 70 public repos; `src/content/github.ts` lists the 7 worth a
+reader's time. Curation is the feature.
+
 ## Claims and evidence
 
 Two sections make checkable claims, so both are written to survive being

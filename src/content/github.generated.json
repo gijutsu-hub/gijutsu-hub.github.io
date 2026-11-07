@@ -1,0 +1,141 @@
+{
+  "fetchedAt": "2026-11-07T16:25:06.435Z",
+  "profile": {
+    "login": "gijutsu-hub",
+    "name": "Sumon Nath",
+    "publicRepos": 70,
+    "followers": 33,
+    "createdAt": "2020-09-24T03:43:29Z"
+  },
+  "repos": [
+    {
+      "slug": "firex",
+      "url": "https://github.com/gijutsu-hub/firex",
+      "description": "FireX — a Linux network security appliance: VLAN segmentation, DPI, threat feeds, enforced air gap, signed A/B firmware updates",
+      "stars": 0,
+      "forks": 0,
+      "language": "C",
+      "languages": [
+        "C",
+        "Shell",
+        "JavaScript",
+        "CSS",
+        "Makefile",
+        "Python",
+        "HTML"
+      ],
+      "pushedAt": "2026-10-30T05:46:04Z",
+      "createdAt": "2026-10-30T05:45:57Z",
+      "sizeKb": 789,
+      "archived": false
+    },
+    {
+      "slug": "aisastscanner",
+      "url": "https://github.com/gijutsu-hub/aisastscanner",
+      "description": "No Claude no nothing build from scratch",
+      "stars": 1,
+      "forks": 0,
+      "language": "Python",
+      "languages": [
+        "Python"
+      ],
+      "pushedAt": "2026-06-03T03:58:56Z",
+      "createdAt": "2026-05-27T07:38:03Z",
+      "sizeKb": 2157,
+      "archived": false
+    },
+    {
+      "slug": "mitigata-python",
+      "url": "https://github.com/gijutsu-hub/mitigata-python",
+      "description": "CTF challenge — deliberately vulnerable Python/Flask web app. Find and exploit the flaws, capture the flags. Authorized training only.",
+      "stars": 0,
+      "forks": 0,
+      "language": "Python",
+      "languages": [
+        "Python",
+        "CSS",
+        "HTML",
+        "Shell",
+        "Dockerfile"
+      ],
+      "pushedAt": "2026-10-31T21:03:50Z",
+      "createdAt": "2026-10-31T20:51:13Z",
+      "sizeKb": 9,
+      "archived": false
+    },
+    {
+      "slug": "mitigata-java",
+      "url": "https://github.com/gijutsu-hub/mitigata-java",
+      "description": "CTF challenge — deliberately vulnerable Java/Spring Boot web app. Find and exploit the flaws, capture the flags. Authorized training only.",
+      "stars": 0,
+      "forks": 0,
+      "language": "Java",
+      "languages": [
+        "Java",
+        "CSS",
+        "Shell",
+        "Dockerfile"
+      ],
+      "pushedAt": "2026-10-31T21:03:48Z",
+      "createdAt": "2026-10-31T20:51:05Z",
+      "sizeKb": 12,
+      "archived": false
+    },
+    {
+      "slug": "mitigata-php",
+      "url": "https://github.com/gijutsu-hub/mitigata-php",
+      "description": "CTF challenge — deliberately vulnerable PHP web app. Find and exploit the flaws, capture the flags. Authorized training only.",
+      "stars": 0,
+      "forks": 0,
+      "language": "PHP",
+      "languages": [
+        "PHP",
+        "CSS",
+        "Shell",
+        "Dockerfile",
+        "Hack"
+      ],
+      "pushedAt": "2026-10-31T21:03:46Z",
+      "createdAt": "2026-10-31T20:50:58Z",
+      "sizeKb": 10,
+      "archived": false
+    },
+    {
+      "slug": "CTF-PLATFROM",
+      "url": "https://github.com/gijutsu-hub/CTF-PLATFROM",
+      "description": "THIS IS A HIGH TECH CTF PLATFORM ",
+      "stars": 5,
+      "forks": 0,
+      "language": "PHP",
+      "languages": [
+        "PHP",
+        "CSS",
+        "HTML",
+        "JavaScript"
+      ],
+      "pushedAt": "2023-03-15T08:44:54Z",
+      "createdAt": "2023-03-15T08:27:11Z",
+      "sizeKb": 607,
+      "archived": false
+    },
+    {
+      "slug": "pushtoprod",
+      "url": "https://github.com/gijutsu-hub/pushtoprod",
+      "description": "ClubGPU - distributed ML training platform: Go control plane, from-scratch ML engine, parameter-server training, React dashboard",
+      "stars": 0,
+      "forks": 0,
+      "language": "Go",
+      "languages": [
+        "Go",
+        "JavaScript",
+        "CSS",
+        "PowerShell",
+        "HTML"
+      ],
+      "pushedAt": "2026-08-08T11:04:43Z",
+      "createdAt": "2026-08-08T09:41:40Z",
+      "sizeKb": 728,
+      "archived": false
+    }
+  ]
+}

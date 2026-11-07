@@ -1,3 +1,4 @@
+import BookCall from "@/components/ui/BookCall";
 import DownloadButton from "@/components/ui/DownloadButton";
 import { site } from "@/content/site";
 
@@ -26,6 +27,10 @@ export default function Contact({ index }: { index: string }) {
               testing work, come with the asset list and the constraints — scoping conversations
               go faster when the boundaries are on the table first.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <BookCall />
+            </div>
+
             <p className="mt-6 max-w-lg text-sm leading-relaxed text-ink-faint">
               All work is authorised and scoped under written rules of engagement. I do not test
               systems without the owner&apos;s documented permission.

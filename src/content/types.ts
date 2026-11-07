@@ -78,6 +78,11 @@ export interface StandardRef {
 }
 
 export interface Stat {
+  /** Static fallback, used where the animated counter is not rendered. */
   value: string;
+  /** Numeric part, for the count-up animation. */
+  count: number;
+  /** Rendered after the number, e.g. "+" or "×". */
+  suffix?: string;
   label: string;
 }

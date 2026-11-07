@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
+import CountUp from "@/components/charts/CountUp";
 import SceneBoundary from "@/components/hero/SceneBoundary";
 import DownloadButton from "@/components/ui/DownloadButton";
 import SceneFallback from "@/components/hero/SceneFallback";
@@ -137,9 +138,15 @@ export default function Hero() {
           </div>
 
           <dl className="mt-14 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="border-l border-line pl-4">
-                <dt className="font-display text-2xl text-accent">{stat.value}</dt>
+            {stats.map((stat, i) => (
+              <div
+                key={stat.label}
+                className="animate-[revealUp_600ms_var(--ease-out-expo)_both] border-l border-line pl-4"
+                style={{ animationDelay: `${160 + i * 70}ms` }}
+              >
+                <dt className="font-display text-2xl text-accent">
+                  <CountUp to={stat.count} suffix={stat.suffix ?? ""} />
+                </dt>
                 <dd className="mt-1 font-mono text-[0.6875rem] uppercase leading-snug tracking-wider text-ink-faint">
                   {stat.label}
                 </dd>

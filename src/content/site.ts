@@ -27,8 +27,8 @@ export const site = {
 } as const;
 
 export const stats: Stat[] = [
-  { value: "100+", label: "Engagements delivered" },
-  { value: "5", label: "CVEs credited" },
-  { value: "100+", label: "Bug bounty programs" },
-  { value: "2×", label: "Microsoft MVR, 2022 & 2023" },
+  { value: "100+", count: 100, suffix: "+", label: "Engagements delivered" },
+  { value: "5", count: 5, label: "CVEs credited" },
+  { value: "100+", count: 100, suffix: "+", label: "Bug bounty programs" },
+  { value: "2×", count: 2, suffix: "×", label: "Microsoft MVR, 2022 & 2023" },
 ];

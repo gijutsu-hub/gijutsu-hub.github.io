@@ -19,11 +19,12 @@ export default function SiteIndex() {
         </p>
 
         <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {pagedRoutes.map((route) => (
+          {pagedRoutes.map((route, i) => (
             <Link
               key={route.href}
               href={route.href}
-              className="group flex flex-col bg-panel p-6 transition-colors hover:bg-surface lg:p-8"
+              style={{ animationDelay: `${i * 60}ms` }}
+              className="group flex animate-[revealUp_560ms_var(--ease-out-expo)_both] flex-col bg-panel p-6 transition-colors hover:bg-surface lg:p-8"
             >
               <div className="flex items-baseline justify-between gap-3">
                 <span className="font-mono text-xs text-accent">{routeIndex(route.href)}</span>
