@@ -25,6 +25,8 @@ npm run lint
 ```
 src/
   content/        All site copy, as typed data. Edit the site here.
+                  attack.ts  — ATT&CK coverage, with depth per technique
+                  cvss.ts    — CVSS metric defs and worked scoring examples
   components/
     hero/         Hero section and the WebGL scene
     sections/     One component per page section
@@ -110,6 +112,20 @@ It degrades in three stages:
 
 The scene is `aria-hidden` and `pointer-events: none`. It carries no
 information, so nothing is lost when it does not render.
+
+## Claims and evidence
+
+Two sections make checkable claims, so both are written to survive being
+checked by someone who knows the field:
+
+- **ATT&CK matrix** (`src/content/attack.ts`) grades each technique Core,
+  Applied or Assessed against what the engagement record actually supports.
+  Tactics with thin coverage are left thin — Collection and Impact especially.
+  A matrix with every cell lit reads as a lie to anyone who has filled one in
+  honestly.
+- **CVSS examples** (`src/content/cvss.ts`) are vulnerability *classes*, not
+  engagement findings, and the page says so. Publishing a real finding, even
+  anonymised, is how a consultancy loses a client.
 
 ## Gotchas worth knowing
 

@@ -11,6 +11,7 @@ const LINKS = [
   { id: "red-team", label: "Red Team" },
   { id: "detection", label: "Detection" },
   { id: "appsec", label: "AppSec" },
+  { id: "attack", label: "ATT&CK" },
   { id: "projects", label: "Work" },
   { id: "research", label: "Research" },
   { id: "contact", label: "Contact" },

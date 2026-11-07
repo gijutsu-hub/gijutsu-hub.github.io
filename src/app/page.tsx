@@ -1,10 +1,12 @@
 import Hero from "@/components/hero/Hero";
+import AttackMatrix from "@/components/sections/AttackMatrix";
 import Capability from "@/components/sections/Capability";
 import Contact from "@/components/sections/Contact";
 import DisciplineBlock from "@/components/sections/DisciplineBlock";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
 import Research from "@/components/sections/Research";
+import Scoring from "@/components/sections/Scoring";
 import Skills from "@/components/sections/Skills";
 import { disciplines } from "@/content/disciplines";
 
@@ -28,6 +30,8 @@ export default function Home() {
       {disciplines.map((discipline) => (
         <DisciplineBlock key={discipline.id} discipline={discipline} index={next()} />
       ))}
+      <AttackMatrix index={next()} />
+      <Scoring index={next()} />
       <Experience index={next()} />
       <Projects index={next()} />
       <Skills index={next()} />
