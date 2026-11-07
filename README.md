@@ -20,11 +20,38 @@ npm run resume  # regenerate both resume PDFs only
 npm run lint
 ```
 
+## Routing
+
+The site is seven pages, not one scroll. `src/content/routes.ts` is the single
+source for all of it — the primary nav, prev/next paging, per-page metadata and
+the landing-page index all read from that array. Adding a page means an entry
+there plus a route folder; nothing else needs touching, and the four places
+that list pages cannot drift apart.
+
+| Route | Contents |
+| --- | --- |
+| `/` | Hero and an index of everything else |
+| `/capability` | Capability matrix and the six discipline blocks |
+| `/method` | ATT&CK coverage and CVSS scoring |
+| `/experience` | Roles, skills, frameworks, certifications, education |
+| `/work` | Projects, disclosure record, events organised |
+| `/concept` | Project World |
+| `/contact` | Contact |
+| `/resume` | Resume page and both PDF downloads |
+
+Each content page gets a `loading.tsx` skeleton that mirrors the real
+masthead's geometry, so nothing shifts when the content lands. `app/template.tsx`
+replays a short enter animation per navigation, and nav links carry a pending
+dot driven by `useLinkStatus`. On a static export those windows are
+milliseconds — they exist for slow connections, where a click with no feedback
+reads as a dead link.
+
 ## Where things live
 
 ```
 src/
   content/        All site copy, as typed data. Edit the site here.
+                  routes.ts  — the site map; nav, paging and metadata
                   attack.ts  — ATT&CK coverage, with depth per technique
                   cvss.ts    — CVSS metric defs and worked scoring examples
   components/
@@ -38,8 +65,9 @@ src/
   app/
     globals.css   Design tokens and base styles
     layout.tsx    Metadata, fonts, JSON-LD
-    page.tsx      Section order
-    resume/       Web view of the resume
+    page.tsx      Landing page
+    <route>/      One folder per page, each with page.tsx + loading.tsx
+    template.tsx  Per-navigation transition
 scripts/
   build-resume-pdf.ts   Entry point: builds both PDFs
   resume/render.ts      Shared layout engine

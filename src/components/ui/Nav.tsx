@@ -1,29 +1,27 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import NavPending from "@/components/ui/NavPending";
 import { site } from "@/content/site";
-import { useActiveSection } from "@/lib/hooks";
+import { routes } from "@/content/routes";
 
-const LINKS = [
-  { id: "capability", label: "Capability" },
-  { id: "vapt", label: "VAPT" },
-  { id: "red-team", label: "Red Team" },
-  { id: "detection", label: "Detection" },
-  { id: "appsec", label: "AppSec" },
-  { id: "attack", label: "ATT&CK" },
-  { id: "projects", label: "Work" },
-  { id: "project-world", label: "Concept" },
-  { id: "research", label: "Research" },
-  { id: "contact", label: "Contact" },
-];
+/**
+ * Primary navigation.
+ *
+ * Active state comes from the pathname rather than a scroll observer — the
+ * site is routed now, so "where am I" is a fact rather than a guess about
+ * which section is most visible.
+ */
 
-const SECTION_IDS = LINKS.map((link) => link.id);
+const NAV = routes.filter((r) => r.href !== "/");
 
 export default function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const active = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -32,13 +30,15 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock the page behind the mobile sheet.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
@@ -51,44 +51,55 @@ export default function Nav() {
 
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          scrolled ? "border-b border-line bg-void/85 backdrop-blur-md" : "border-b border-transparent"
+          scrolled
+            ? "border-b border-line bg-void/85 backdrop-blur-md"
+            : "border-b border-transparent"
         }`}
       >
         <nav
           aria-label="Primary"
           className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 lg:px-10"
         >
-          <a href="#top" className="group flex items-center gap-2.5 font-mono text-sm">
+          <Link href="/" className="group flex items-center gap-2.5 font-mono text-sm">
             <span className="inline-block h-1.5 w-1.5 bg-accent" />
             <span className="text-ink transition-colors group-hover:text-accent">
               {site.handle}
             </span>
-          </a>
+          </Link>
 
-          <ul className="hidden items-center gap-1 md:flex">
-            {LINKS.map((link) => (
-              <li key={link.id}>
-                <a
-                  href={`#${link.id}`}
-                  aria-current={active === link.id ? "true" : undefined}
-                  className={`px-3 py-2 font-mono text-[0.8125rem] transition-colors ${
-                    active === link.id
-                      ? "text-accent"
-                      : "text-ink-faint hover:text-ink"
+          <ul className="hidden items-center gap-0.5 md:flex">
+            {NAV.filter((r) => r.href !== "/resume").map((route) => (
+              <li key={route.href}>
+                <Link
+                  href={route.href}
+                  aria-current={isActive(route.href) ? "page" : undefined}
+                  className={`relative px-3 py-2 font-mono text-[0.8125rem] transition-colors ${
+                    isActive(route.href) ? "text-accent" : "text-ink-faint hover:text-ink"
                   }`}
                 >
-                  {link.label}
-                </a>
+                  {route.label}
+                  <NavPending />
+                  {isActive(route.href) && (
+                    <span
+                      className="absolute inset-x-3 -bottom-px h-px bg-accent"
+                      aria-hidden="true"
+                    />
+                  )}
+                </Link>
               </li>
             ))}
-          </ul>
 
-          <a
-            href="/resume"
-            className="ml-3 hidden border border-accent/40 bg-accent/10 px-3.5 py-1.5 font-mono text-[0.8125rem] text-accent transition-colors hover:bg-accent/20 md:inline-block"
-          >
-            Resume
-          </a>
+            <li className="ml-3">
+              <Link
+                href="/resume"
+                aria-current={isActive("/resume") ? "page" : undefined}
+                className="relative border border-accent/40 bg-accent/10 px-3.5 py-1.5 font-mono text-[0.8125rem] text-accent transition-colors hover:bg-accent/20"
+              >
+                Resume
+                <NavPending />
+              </Link>
+            </li>
+          </ul>
 
           <button
             type="button"
@@ -112,31 +123,26 @@ export default function Nav() {
       {open && (
         <div
           id="mobile-nav"
-          className="fixed inset-0 z-40 bg-void/97 pt-16 backdrop-blur-md md:hidden"
+          className="fixed inset-0 z-40 overflow-y-auto bg-void/97 pt-16 backdrop-blur-md md:hidden"
         >
           <ul className="flex flex-col px-6 py-6">
-            {LINKS.map((link) => (
-              <li key={link.id} className="border-b border-line">
-                <a
-                  href={`#${link.id}`}
+            {NAV.map((route) => (
+              <li key={route.href} className="border-b border-line">
+                <Link
+                  href={route.href}
                   onClick={() => setOpen(false)}
-                  className="block py-4 font-mono text-lg text-ink-dim"
+                  className={`flex items-baseline justify-between py-4 font-mono text-lg ${
+                    isActive(route.href) ? "text-accent" : "text-ink-dim"
+                  }`}
                 >
-                  {link.label}
-                </a>
+                  {route.label}
+                  {isActive(route.href) && <span className="font-mono text-xs">current</span>}
+                </Link>
               </li>
             ))}
           </ul>
-          <div className="px-6 pt-6">
-            <a
-              href="/resume"
-              onClick={() => setOpen(false)}
-              className="inline-block border border-accent/40 bg-accent/10 px-4 py-2.5 font-mono text-sm text-accent"
-            >
-              Resume
-            </a>
-          </div>
-          <div className="flex gap-3 px-6 pt-4">
+
+          <div className="flex gap-3 px-6 pb-10">
             <a
               href={site.github}
               target="_blank"

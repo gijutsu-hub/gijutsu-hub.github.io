@@ -111,10 +111,10 @@ export default function Hero() {
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <a
-              href="#vapt"
+              href="/capability"
               className="group inline-flex items-center gap-2 border border-accent/40 bg-accent/10 px-5 py-2.5 font-mono text-sm text-accent transition-colors hover:bg-accent/20"
             >
-              View capability
+              Explore capability
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </a>
             <DownloadButton variant="ghost" />
