@@ -26,6 +26,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  // Required for Open Graph and Twitter card URLs to resolve absolutely.
+  // Without it Next emits relative URLs that no scraper can follow.
+  metadataBase: new URL("https://gijutsu-hub.github.io"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: `${site.name} — ${site.role}`,
     template: `%s — ${site.name}`,

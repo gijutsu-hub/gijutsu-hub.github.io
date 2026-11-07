@@ -4,6 +4,12 @@ Personal site for Sumon Nath. Next.js 16 (App Router), React 19, Tailwind 4,
 Three.js via react-three-fiber. Statically exported at build time — there is no
 server runtime, no database and no API.
 
+**Live:** https://gijutsu-hub.github.io
+
+Deployed by `.github/workflows/pages.yml` on every push to `main`. The workflow
+lints, typechecks, builds, and fails if the committed resume PDFs differ from
+the build output.
+
 ## Running it
 
 ```bash
@@ -105,16 +111,37 @@ It degrades in three stages:
 The scene is `aria-hidden` and `pointer-events: none`. It carries no
 information, so nothing is lost when it does not render.
 
-## Things to change before this goes live
+## Gotchas worth knowing
+
+**Do not re-add the Turbopack CSS rule.** `create-next-app` scaffolds
+`turbopack.rules` applying the Tailwind loader to `"*.css"`. That glob also
+matches the stylesheet `next/font` generates, and running it through the loader
+strips the `@font-face` rules — fonts silently fall back to the system stack
+with no build error. Tailwind runs through `postcss.config.mjs` instead.
+
+**Font variable classes belong on `<html>`, not `<body>`.** `globals.css`
+defines `--font-display` on `:root` as `var(--font-space-grotesk), …`. If that
+inner variable is only declared on `<body>`, the `var()` is unresolvable at
+`:root`, making `--font-display` invalid there — and custom properties inherit
+their *computed* value, so descendants inherit the invalid one rather than
+re-resolving it.
+
+Check both after touching fonts, Tailwind or `next.config.ts`:
+
+```bash
+npm run build && grep -rc "@font-face" out/_next/static/chunks/*.css
+```
+
+Three is correct. Zero means the fonts are broken again.
+
+## Still open
 
 - **Client names.** `src/content/experience.ts` describes clients by sector
   rather than naming them. Most engagement contracts forbid publishing a client
   list. Confirm the MSAs before swapping names in.
-- **Open Graph image.** `app/layout.tsx` declares `summary_large_image` but no
-  image exists yet. Add `src/app/opengraph-image.png` (1200×630) and Next will
-  wire it up automatically.
-- **Canonical URL.** Add `metadataBase` to the metadata export once the domain
-  is decided, or absolute OG URLs will not resolve.
+- **Open Graph image.** `layout.tsx` declares `summary_large_image` but no image
+  exists yet. Add `src/app/opengraph-image.png` (1200×630) and Next wires it up
+  automatically.
 - **Speaking engagement.** `src/content/research.ts` says "including by
   Microsoft" without naming the event. A named event and year is stronger.
 
