@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import Footer from "@/components/ui/Footer";
 import Nav from "@/components/ui/Nav";
+import StatusBar from "@/components/ui/StatusBar";
 import { site } from "@/content/site";
 
 import "./globals.css";
@@ -137,9 +138,14 @@ export default function RootLayout({
           // Static, authored above — not user input.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        {/* Decorative texture; pointer-events:none, below all content. */}
+        <div className="ambient" aria-hidden="true" />
         <Nav />
-        <main id="main">{children}</main>
+        <main id="main" className="relative z-10">
+          {children}
+        </main>
         <Footer />
+        <StatusBar />
       </body>
     </html>
   );

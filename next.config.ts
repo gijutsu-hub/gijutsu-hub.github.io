@@ -1,7 +1,30 @@
+import { execSync } from "node:child_process";
+
 import type { NextConfig } from "next";
+
+/**
+ * Build provenance, resolved once at build time and inlined.
+ *
+ * GITHUB_SHA is set by Actions; the git call is the local fallback. Both are
+ * wrapped because a tarball with no .git must still build.
+ */
+function buildSha(): string {
+  if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA.slice(0, 7);
+  try {
+    return execSync("git rev-parse --short=7 HEAD", { encoding: "utf8" }).trim();
+  } catch {
+    return "unknown";
+  }
+}
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+
+  // Inlined into the client bundle; read by the status bar.
+  env: {
+    NEXT_PUBLIC_BUILD_SHA: buildSha(),
+    NEXT_PUBLIC_BUILD_TIME: new Date().toISOString(),
+  },
 
   /**
    * GitHub Pages serves static files only — there is no Node runtime to render
