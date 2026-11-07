@@ -5,16 +5,25 @@ import { ImageResponse } from "next/og";
 
 import { site } from "@/content/site";
 
-export const alt = `${site.name} — ${site.role}`;
-
 /**
- * With `output: "export"` there is no server to render this on request, so
- * the route must declare itself static. Next then renders the PNG once at
- * build time and writes it into out/.
+ * Served from `/og.png` rather than Next's `opengraph-image` file convention.
+ *
+ * That convention emits the image at an extensionless path with a cache-busting
+ * query (`/opengraph-image?<hash>`). GitHub Pages types files by extension, so
+ * it served that as `application/octet-stream`, and every scraper — Slack,
+ * LinkedIn, X, iMessage — refuses to render a link preview from a non-image
+ * content type. The card existed and simply never appeared.
+ *
+ * A route handler at a path ending in `.png` is written to `out/og.png`, which
+ * Pages serves as `image/png`. The metadata in layout.tsx points here
+ * explicitly, which also overrides the file convention.
+ *
+ * `force-static` is required: `output: export` has no server to render this on
+ * request, so Next renders it once at build time.
  */
 export const dynamic = "force-static";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+
+const size = { width: 1200, height: 630 };
 
 /**
  * Link preview card, rendered to PNG at build time.
@@ -47,7 +56,7 @@ function past(fraction: number): number {
   return Math.round(fraction * 1000) / 1000;
 }
 
-export default async function Image() {
+export async function GET() {
   const [latoBlack, latoRegular, mono] = [
     readFileSync(join(FONT_DIR, "Lato-Black.ttf")),
     readFileSync(join(FONT_DIR, "Lato-Regular.ttf")),

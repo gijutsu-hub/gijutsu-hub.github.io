@@ -57,11 +57,24 @@ export const metadata: Metadata = {
     description: site.tagline,
     siteName: site.name,
     locale: "en_IN",
+    // Pointed at /og.png explicitly rather than relying on the
+    // opengraph-image file convention. See the note in app/og.png/route.tsx:
+    // the convention's extensionless path is served as octet-stream by
+    // GitHub Pages, and scrapers will not render a preview from that.
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.role}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.role}`,
     description: site.tagline,
+    images: ["/og.png"],
   },
   robots: {
     index: true,
