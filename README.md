@@ -141,6 +141,25 @@ It degrades in three stages:
 The scene is `aria-hidden` and `pointer-events: none`. It carries no
 information, so nothing is lost when it does not render.
 
+## YouTube
+
+`npm run youtube` reads the channel's public RSS feed into
+`src/content/youtube.generated.json` and downloads each thumbnail into
+`public/yt/`. Both are committed; the build touches no third party.
+
+The gallery uses a facade player. A real YouTube iframe pulls ~1MB of player
+JavaScript and contacts Google on page load for every visitor, watching or
+not — fourteen of those on one page is a performance problem and a privacy
+one. So each card is a local thumbnail and a button, and the iframe is created
+only on click, pointed at youtube-nocookie.com with autoplay set.
+
+Verified: the page contacts zero third-party hosts until someone presses play.
+
+Titles are overridden in `src/content/youtube.ts` where the upload title is
+shouty. "ETHICALLY HACKED INDIAN GOVERNMENT WEBSITE n*times" describes a
+responsibly disclosed access-control bug and is a poor thing to put in front
+of a hiring manager; the video is unchanged, the framing is not.
+
 ## GitHub data
 
 `npm run github` fetches live figures for the curated repositories into

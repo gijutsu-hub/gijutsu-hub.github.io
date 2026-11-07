@@ -1,0 +1,151 @@
+{
+  "fetchedAt": "2026-11-07T17:09:35.820Z",
+  "channel": {
+    "id": "UClrxfywedQYylYcOQy6-Hhg",
+    "handle": "@gijutsu_hub",
+    "name": "gijutsu_hub",
+    "url": "https://www.youtube.com/@gijutsu_hub"
+  },
+  "videos": [
+    {
+      "id": "WukNDSScHps",
+      "title": "Mastering Server-Side Template Injection (SSTI)",
+      "published": "2023-07-14",
+      "views": 107,
+      "description": "Introduction\nWelcome to the captivating world of Server-Side Template Injection (SSTI). This article unveils the intricate tapestry of SSTI, enticing readers with advanced exploitation techniques, expert mitigation strategies, and an immersive live demonstration. Prepare to embark on a journey that will deepen your understanding, ignite curiosity, and empower you to safeguard against this potent v",
+      "thumb": "/yt/WukNDSScHps.jpg",
+      "width": 480,
+      "height": 360
+    },
+    {
+      "id": "Sgl3ZkgDH80",
+      "title": "Build your own cloud | Unlimited Cloud storage",
+      "published": "2023-07-14",
+      "views": 146,
+      "description": "Before starting with this step understand why cloud storage is important why we need it and why shouldn’t we use any 3 party cloud like google cloud, on-drive or any other clouds storage\n\nDETAILS LINK:- https://pwnme.in/build-your-own-cloud-for-business-home-community/",
+      "thumb": "/yt/Sgl3ZkgDH80.jpg",
+      "width": 640,
+      "height": 480
+    },
+    {
+      "id": "eALnpi-jVtI",
+      "title": "Leveraging Local File Inclusion (LFI)",
+      "published": "2023-07-13",
+      "views": 180,
+      "description": "In the realm of web application security, Local File Inclusion (LFI) is a prevalent vulnerability that allows attackers to include and execute files residing on the target server. LFI can have severe consequences, including unauthorized access, information disclosure, and even remote code execution. This article aims to provide a comprehensive understanding of LFI, delve into advanced techniques u",
+      "thumb": "/yt/eALnpi-jVtI.jpg",
+      "width": 640,
+      "height": 480
+    },
+    {
+      "id": "KUvGkJA3hGc",
+      "title": "ETHICALLY HACKED INDIAN GOVERNMENT WEBSITE n*times",
+      "published": "2022-12-29",
+      "views": 275,
+      "description": "BUG TYPE: ACCESS CONTROL \nBOUNTY: $$$$\nTIME: 02:00 04:00 MINS\n\nDUE TO SOME PRIVACY ACT, WE HAVE BLURRED SOME CONTENT ...",
+      "thumb": "/yt/KUvGkJA3hGc.jpg",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "id": "wKPu26AUqA4",
+      "title": "CYBER SECURITY DISCUSSION & GIVEAWAY WITH @gijutsu_hub",
+      "published": "2022-06-18",
+      "views": 347,
+      "description": "DISCUSSION TOPICS:\nINSTAGRAM Q/A\nCTF MACHINE MAKING \nCYBERSECURITY JOB OPPORTUNITY \nBUG HUNTING\nGIVEAWAY",
+      "thumb": "/yt/wKPu26AUqA4.jpg",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "id": "W9nVKAsHzNc",
+      "title": "Shodan Recon",
+      "published": "2022-06-16",
+      "views": 447,
+      "description": "Hi everyone here I am telling you about shodan recon \nFollow me on Instagram @gijutsu_hub",
+      "thumb": "/yt/W9nVKAsHzNc.jpg",
+      "width": 640,
+      "height": 480
+    },
+    {
+      "id": "tyOBrIwXXwQ",
+      "title": "Live hunting Part2",
+      "published": "2022-06-06",
+      "views": 907,
+      "description": "We are going to lively hunt on targets.",
+      "thumb": "/yt/tyOBrIwXXwQ.jpg",
+      "width": 480,
+      "height": 360
+    },
+    {
+      "id": "YoSxFc5h164",
+      "title": "Google Hacking database [ Google Dorking]",
+      "published": "2022-06-05",
+      "views": 437,
+      "description": "Hi guys here I am going to show you how to hack like a pro using google dorking \n\nDon't forget to subscribe @gijutsu_hub",
+      "thumb": "/yt/YoSxFc5h164.jpg",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "id": "TXPYUCr3vmU",
+      "title": "Microsoft Zero day MSDT follina",
+      "published": "2022-06-04",
+      "views": 374,
+      "description": "Hi everyone with the help of @_JohnHammond we are recreating the video of MSDT following exploit here we are telling you and explaining to you about a zero-day attack\n\nExploit link:- https://github.com/JohnHammond/msdt-follina",
+      "thumb": "/yt/TXPYUCr3vmU.jpg",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "id": "Vz7355vAKbo",
+      "title": "CRYPTO SCAMS [ EXPOSED]",
+      "published": "2022-06-04",
+      "views": 119,
+      "description": "Hi guys be aware of all other crypto scams I am general scan understand the logic before hunting it",
+      "thumb": "/yt/Vz7355vAKbo.jpg",
+      "width": 640,
+      "height": 480
+    },
+    {
+      "id": "Y6jrvix8DJM",
+      "title": "Automated GitHub Recon E02",
+      "published": "2022-05-24",
+      "views": 405,
+      "description": "Hi guys here I have told you about advanced GitHub recon tool \n\nLink to tool: https://github.com/hisxo/gitGraber",
+      "thumb": "/yt/Y6jrvix8DJM.jpg",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "id": "9vO-A4XEnQ0",
+      "title": "GITHUB RECON",
+      "published": "2022-05-24",
+      "views": 166,
+      "description": "Hi guys in this video i have explained about GitHub recon \n\nThe link for GitHub keyword:- https://gist.githubusercontent.com/EdOverflow/8bd2faad513626c413b8fc6e9d955669/raw/06a0ef0fd83920d513c65767aae258ecf8382bdf/gistfile1.txt",
+      "thumb": "/yt/9vO-A4XEnQ0.jpg",
+      "width": 640,
+      "height": 480
+    },
+    {
+      "id": "o2IA-BLtjWY",
+      "title": "MALWARE ATTACKED [ How to create your own malware]",
+      "published": "2022-05-23",
+      "views": 229,
+      "description": "Hi guys today i have created a small python script for a malware attack hope you like the video \n\nDon't forget to share, subscribe, and like the video \n\nFollow me on Instagram:- https://instagram.com/bugxploit",
+      "thumb": "/yt/o2IA-BLtjWY.jpg",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "id": "p2_ZodFy-DY",
+      "title": "RECON PART2 WITH LIVE BUG",
+      "published": "2022-05-22",
+      "views": 1858,
+      "description": "This video consists of a security level bug p3 which comes under insecure design. with recon methodology",
+      "thumb": "/yt/p2_ZodFy-DY.jpg",
+      "width": 640,
+      "height": 480
+    }
+  ]
+}

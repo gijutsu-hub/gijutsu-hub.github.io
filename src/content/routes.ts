@@ -73,6 +73,14 @@ export const routes: RouteDef[] = [
       "A white paper on a physics-bound economy — and, more usefully, what would break if anyone tried it.",
   },
   {
+    href: "/videos",
+    label: "Videos",
+    title: "Video walkthroughs",
+    eyebrow: "Channel",
+    description:
+      "Technique walkthroughs and live hunting from the YouTube channel — vulnerability classes explained by exploiting them.",
+  },
+  {
     href: "/research",
     label: "Research",
     title: "Research & source",
