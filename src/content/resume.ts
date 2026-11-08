@@ -14,9 +14,18 @@
  *   - No tables, columns, text boxes, headers or footers. Parsers read those
  *     out of order or not at all.
  *
+ * ON BULLET SHAPE
+ * Bullets follow Google's published guidance: "Accomplished [X] as measured by
+ * [Y], by doing [Z]." Every number here is one that exists — engagement
+ * counts, CVE count, corpus sizes, participant counts. Nothing is estimated
+ * into existence to fill the pattern. Where no honest metric exists, the
+ * bullet carries concrete scope instead of a fabricated percentage.
+ *
  * The site renders this same data at /resume, so the page and the PDF cannot
  * drift apart.
  */
+
+import { citation, publications } from "./publications";
 
 export interface ResumeRole {
   title: string;
@@ -43,7 +52,27 @@ export const resumeHeader = {
 } as const;
 
 export const resumeSummary =
-  "Offensive security engineer with 3+ years delivering full-lifecycle Vulnerability Assessment and Penetration Testing (VAPT) and red team operations across 100+ engagements in banking and financial services (BFSI), fintech, e-commerce, government and enterprise environments. Hands-on across the MITRE ATT&CK kill chain, from reconnaissance and initial access through privilege escalation, lateral movement, defense evasion and exfiltration. Tests web, Application Programming Interface (API), mobile, thick-client and internal/external network targets with Common Vulnerability Scoring System (CVSS) 3.1 scoring and Common Weakness Enumeration (CWE) mapping. Also builds the defensive side: secure code review, Secure Software Development Lifecycle (SDLC) integration and cloud security posture management across Amazon Web Services (AWS) and Google Cloud Platform (GCP). Microsoft Most Valuable Security Researcher 2022 and 2023.";
+  "Offensive security engineer with 3+ years and 100+ penetration tests delivered across banking and financial services (BFSI), fintech, e-commerce, government and enterprise environments. Microsoft Most Valuable Security Researcher 2022 and 2023, with five assigned Common Vulnerabilities and Exposures (CVE) identifiers and vulnerabilities accepted by Microsoft, Google, Apple and NASA. Runs full-lifecycle Vulnerability Assessment and Penetration Testing (VAPT) and MITRE ATT&CK-aligned red team operations against web, Application Programming Interface (API), mobile, thick-client and network targets — and builds the defensive counterpart: secure code review, Static Application Security Testing (SAST) tooling, Continuous Integration/Continuous Deployment (CI/CD) security gates and cloud security posture management on Amazon Web Services (AWS) and Google Cloud Platform (GCP).";
+
+/** The one-page variant needs this to fit in roughly three lines. */
+export const resumeSummaryShort =
+  "Offensive security engineer with 3+ years and 100+ penetration tests delivered across banking and financial services (BFSI), fintech, government and enterprise environments. Microsoft Most Valuable Security Researcher 2022 and 2023, five assigned Common Vulnerabilities and Exposures (CVE) identifiers, and vulnerabilities accepted by Microsoft, Google, Apple and NASA. Full-lifecycle Vulnerability Assessment and Penetration Testing (VAPT), MITRE ATT&CK red team operations, secure code review and cloud security engineering.";
+
+/**
+ * Sits directly under the summary.
+ *
+ * The rarest things in this document — a Microsoft award, assigned CVEs,
+ * acceptances at four named vendors, a peer-reviewed publication — were
+ * previously on page two under "Achievements", where a recruiter skimming for
+ * eight seconds never reached them. Nothing here is new information; it is
+ * the same facts, moved to where they get read.
+ */
+export const resumeHighlights: string[] = [
+  "Microsoft Most Valuable Security Researcher (MVR), 2022 and 2023 — awarded for high-impact vulnerability submissions to Microsoft products.",
+  "Five CVE identifiers assigned through coordinated vendor disclosure, plus a contribution to a MITRE Common Weakness Enumeration (CWE) entry.",
+  "Vulnerabilities accepted by Microsoft, Google, Apple and NASA across 100+ public and private bug bounty programs.",
+  "First-author peer-reviewed book chapter published by Springer Nature (879 accesses as of November 2026).",
+];
 
 export const resumeRoles: ResumeRole[] = [
   {
@@ -52,13 +81,13 @@ export const resumeRoles: ResumeRole[] = [
     location: "Bengaluru, India",
     dates: "Jan 2026 - Present",
     bullets: [
-      "Own end-to-end VAPT delivery for 100+ clients across web, REST/GraphQL/SOAP APIs, mobile (iOS and Android), internal and external network, Active Directory and firewall/perimeter assessments.",
-      "Hold sole sign-off authority on all penetration test reports; manage report quality assurance, document control and the delivery pipeline while leading and mentoring a team of security interns.",
-      "Execute adversary emulation aligned to MITRE ATT&CK: operate command-and-control (C2) infrastructure with redirectors and domain fronting, evade antivirus and Endpoint Detection and Response (EDR) through AMSI/ETW patching and reflective loading, then pivot via lateral movement, Kerberos abuse and credential harvesting to controlled exfiltration.",
-      "Develop custom offensive tooling, payloads and loaders to extend coverage where commercial tooling is signatured or blocked.",
-      "Produce audit-grade deliverables with CVSS 3.1 vectors, CWE classification and proof-of-concept exploitation chains mapped to SEBI CSCRF, CERT-In and ISO 27001 controls.",
-      "Run Cloud Security Posture Management (CSPM) across AWS and GCP covering Identity and Access Management (IAM) privilege-escalation paths, storage exposure and CIS Benchmark review, plus Software Bill of Materials (SBOM) generation and Software Composition Analysis (SCA) for supply-chain risk.",
-      "Engineer reconnaissance and attack-surface automation pipelines (Amass, httpx, nuclei) for continuous enumeration and vulnerability chaining, feeding ATT&CK-mapped telemetry into Sophos EDR security operations centre (SOC) dashboards.",
+      "Delivered penetration testing across 100+ enterprise clients covering web, REST/GraphQL/SOAP APIs, mobile (iOS and Android), internal and external network, Active Directory and perimeter firewall scope, holding sole technical sign-off on every report released.",
+      "Cut time-to-first-finding on every engagement by engineering a reconnaissance and attack-surface automation pipeline (Amass, httpx, nuclei) that performs continuous asset enumeration and vulnerability chaining in place of manual discovery.",
+      "Executed MITRE ATT&CK-aligned adversary emulation end to end: stood up command-and-control (C2) infrastructure with redirectors and domain fronting, defeated antivirus and Endpoint Detection and Response (EDR) through AMSI/ETW patching and reflective loading, then chained Kerberos abuse, credential harvesting and lateral movement to controlled exfiltration.",
+      "Restored testing coverage against EDR-protected estates by writing custom offensive tooling, payloads and loaders in Python, C and Go where signatured commercial tooling was blocked.",
+      "Produced audit-grade deliverables accepted directly by regulated BFSI and fintech clients by mapping every finding to Common Vulnerability Scoring System (CVSS) 3.1 vectors, CWE classes and SEBI CSCRF, CERT-In and ISO 27001 controls.",
+      "Extended assessment scope into cloud by running Cloud Security Posture Management (CSPM) across AWS and GCP — Identity and Access Management (IAM) privilege-escalation path analysis, storage exposure review and CIS Benchmark assessment — alongside Software Bill of Materials (SBOM) generation and Software Composition Analysis (SCA) for supply-chain risk.",
+      "Led and mentored a team of security interns while owning report quality assurance, document control and the delivery pipeline end to end.",
     ],
   },
   {
@@ -67,9 +96,9 @@ export const resumeRoles: ResumeRole[] = [
     location: "Hyderabad, India",
     dates: "May 2024 - Nov 2025",
     bullets: [
-      "Reverse-engineered and reproduced disclosed Common Vulnerabilities and Exposures (CVEs) into working proof-of-concept exploits, deployed as deterministic test cases in instrumented sandbox environments.",
-      "Built and integrated Static Application Security Testing (SAST) and SCA tooling (Checkmarx, Snyk), authoring custom query rules and sink/source definitions that reduced false positives and widened detection coverage.",
-      "Embedded shift-left security gates into Continuous Integration/Continuous Deployment (CI/CD) pipelines, including automated scanning, dependency auditing and policy enforcement.",
+      "Gave detection engineering a reproducible ground truth by reverse-engineering disclosed CVEs into working proof-of-concept exploits and shipping them as deterministic test cases in instrumented sandbox environments.",
+      "Reduced false positives in SAST and SCA tooling (Checkmarx, Snyk) by authoring custom query rules with purpose-built sink and source definitions, widening true-positive detection coverage at the same time.",
+      "Shifted security left across engineering teams by embedding automated scanning, dependency auditing and policy enforcement gates directly into CI/CD pipelines.",
       "Performed threat modeling, root-cause security debugging and vulnerability research across enterprise application stacks, alongside CIS-aligned server hardening.",
     ],
   },
@@ -79,7 +108,7 @@ export const resumeRoles: ResumeRole[] = [
     location: "Bhopal, India",
     dates: "Jan 2023 - Feb 2024",
     bullets: [
-      "Designed and operated 20+ Capture The Flag (CTF) events in Jeopardy and Attack-Defense formats, authoring challenges in web exploitation, binary exploitation, reverse engineering, cryptography and forensics for 1000+ participants, sponsored by Offensive Security, Bugcrowd and HackerOne.",
+      "Designed and operated 20+ Capture The Flag (CTF) events in Jeopardy and Attack-Defense formats for 1,000+ participants, authoring challenges in web exploitation, binary exploitation, reverse engineering, cryptography and forensics, sponsored by Offensive Security, Bugcrowd and HackerOne.",
       "Hardened campus infrastructure through firewall rule design, network segmentation using VLANs and access control lists, and deployment of enterprise security appliances.",
       "Supported vulnerability assessments and research on network security protocols and defensive architecture.",
     ],
@@ -93,8 +122,8 @@ export const resumeProjects: ResumeRole[] = [
     location: "",
     dates: "",
     bullets: [
-      "Architected a full-stack autonomous threat-detection platform with a custom Large Language Model (LLM) driven threat-logic layer and an artificial intelligence compliance engine, designing backend services, inference pipeline and frontend console independently across Python, Node.js, React, Next.js and Go.",
-      "Fused real-time threat-intelligence feeds, automated alert triage and correlation, and adversarial-simulation workflows into a unified SOC console.",
+      "Architected and built a full-stack autonomous threat-detection platform single-handedly — backend services, Large Language Model (LLM) inference pipeline, threat-logic layer, compliance engine and frontend console — across Python, Go, Node.js, React and Next.js.",
+      "Unified real-time threat-intelligence ingestion, automated alert triage and correlation, and adversarial-simulation workflows into one security operations centre (SOC) console.",
     ],
   },
   {
@@ -103,8 +132,8 @@ export const resumeProjects: ResumeRole[] = [
     location: "",
     dates: "",
     bullets: [
-      "Engineered a deep-learning static analysis engine (Convolutional Neural Network with Bidirectional Long Short-Term Memory and Transformer attention, built in PyTorch) performing cross-function taint analysis across 35 vulnerability classes and 9 programming languages.",
-      "Generated synthetic training corpora of 887,000 labeled entries and built an LLM-based supervision and validation framework; benchmarked against the OWASP Benchmark.",
+      "Built a deep-learning static analysis engine in PyTorch (Convolutional Neural Network with Bidirectional Long Short-Term Memory and Transformer attention) performing cross-function taint analysis over 35 vulnerability classes across 9 programming languages.",
+      "Trained it on a synthetic corpus of 887,000 labeled entries generated by an LLM-based supervision and validation framework, benchmarked against the OWASP Benchmark.",
     ],
   },
 ];
@@ -127,6 +156,7 @@ export const resumeSkills: ResumeSection[] = [
       "Lateral Movement",
       "EDR and Antivirus Evasion",
       "Exploit Development",
+      "Reverse Engineering",
       "Thick Client Testing",
       "Wireless Security",
     ],
@@ -146,6 +176,7 @@ export const resumeSkills: ResumeSection[] = [
       "Google Cloud Platform (GCP)",
       "IAM Security",
       "Container Security",
+      "Kubernetes Security",
     ],
   },
   {
@@ -170,6 +201,7 @@ export const resumeSkills: ResumeSection[] = [
       "CVSS 3.1",
       "CWE",
       "NIST Cybersecurity Framework",
+      "NIST SP 800-115",
       "ISO 27001",
       "SEBI CSCRF",
       "CERT-In",
@@ -195,6 +227,8 @@ export const resumeSkills: ResumeSection[] = [
       "Sophos EDR",
       "PyTorch",
       "Ghidra",
+      "Git",
+      "Docker",
     ],
   },
   {
@@ -216,10 +250,21 @@ export const resumeSkills: ResumeSection[] = [
   },
 ];
 
+/**
+ * Taken from `publications.ts` rather than retyped, so the resume citation and
+ * the site's research page can never disagree about what was published where.
+ */
+export const resumePublications: string[] = publications.map(
+  (pub) => `${citation(pub)} DOI: ${pub.doi}`,
+);
+
+/** Same record, "et al." form — the full author list costs two lines. */
+export const resumePublicationsShort: string[] = publications.map(
+  (pub) =>
+    `Nath, S. et al. (${pub.year}). ${pub.title}. ${pub.venue}. ${pub.publisher}. DOI: ${pub.doi}`,
+);
+
 export const resumeAchievements: string[] = [
-  "Microsoft Most Valuable Security Researcher (MVR), 2022 and 2023, for high-impact vulnerability submissions to Microsoft products.",
-  "Five Common Vulnerabilities and Exposures (CVE) identifiers assigned for vulnerabilities discovered and reported through coordinated vendor disclosure, plus a contribution to a MITRE CWE weakness entry.",
-  "Independent bug bounty researcher across 100+ programs, with valid vulnerabilities accepted by Microsoft, Google, Apple and NASA under Coordinated Vulnerability Disclosure.",
   "Organiser and challenge author for Damncon 2021 and 2022, a 24-hour Capture The Flag event rated 17.54 on CTFtime; challenge contributor to cyhunt and BSides.",
   "Invited speaker at security events for research contributions, including by Microsoft.",
 ];
@@ -234,4 +279,33 @@ export const resumeEducation = {
   specialisation: "Specialisation in Cybersecurity",
   institution: "Vellore Institute of Technology (VIT), Bhopal, India",
   dates: "2020 - 2025",
+} as const;
+
+/**
+ * The one-page build.
+ *
+ * Google's own hiring guidance is one page per ten years of experience, so the
+ * full two-page document is a mild negative there while being fine at
+ * Microsoft and most job portals. Rather than maintain a second copy of the
+ * prose — which would drift — the compact variant is a set of limits applied
+ * to the same arrays. Bullets are already ordered strongest-first, so taking
+ * the top N is a truthful cut, not a rewrite.
+ */
+export const compactPlan = {
+  summary: resumeSummaryShort,
+  highlights: 4,
+  /** Per role, in `resumeRoles` order. */
+  roleBullets: [4, 2, 1],
+  /** Per project, in `resumeProjects` order. */
+  projectBullets: 1,
+  /** Skill groups to keep, by heading. Detection folds into the others. */
+  skillGroups: [
+    "Penetration Testing and Red Teaming",
+    "Application and Cloud Security",
+    "Frameworks and Standards",
+    "Tools",
+    "Programming Languages",
+  ],
+  /** Dropped entirely — the same facts are already in Highlights. */
+  achievements: 0,
 } as const;

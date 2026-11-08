@@ -7,7 +7,9 @@ import {
   resumeCertifications,
   resumeEducation,
   resumeHeader,
+  resumeHighlights,
   resumeProjects,
+  resumePublications,
   resumeRoles,
   resumeSkills,
   resumeSummary,
@@ -60,6 +62,7 @@ export default function ResumePage() {
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <DownloadButton />
+            <DownloadButton variant="ghost" file={resumeVariants.onePage} />
             <span className="font-mono text-xs text-ink-faint">{resumeFile.note}</span>
           </div>
 
@@ -74,12 +77,17 @@ export default function ResumePage() {
             </a>
             . Same content. The plain one above is the one to upload to job
             portals — applicant tracking systems parse it more reliably, and it
-            prints without burning a cartridge.
+            prints without burning a cartridge. The one-page cut carries the
+            same facts with fewer supporting bullets, for places that ask for a
+            single page.
           </p>
         </header>
 
         <SectionTitle>Professional summary</SectionTitle>
         <p className="leading-relaxed text-ink-dim text-pretty">{resumeSummary}</p>
+
+        <SectionTitle>Key achievements</SectionTitle>
+        <Bullets items={resumeHighlights} />
 
         <SectionTitle>Work experience</SectionTitle>
         <div className="space-y-10">
@@ -123,7 +131,10 @@ export default function ResumePage() {
           ))}
         </div>
 
-        <SectionTitle>Achievements and recognition</SectionTitle>
+        <SectionTitle>Publications</SectionTitle>
+        <Bullets items={resumePublications} />
+
+        <SectionTitle>Speaking and community</SectionTitle>
         <Bullets items={resumeAchievements} />
 
         <SectionTitle>Certifications</SectionTitle>
@@ -140,6 +151,7 @@ export default function ResumePage() {
 
         <div className="mt-16 flex flex-wrap items-center gap-3 border-t border-line pt-8">
           <DownloadButton />
+          <DownloadButton variant="ghost" file={resumeVariants.onePage} />
           <DownloadButton variant="ghost" file={resumeVariants.themed} />
         </div>
       </article>

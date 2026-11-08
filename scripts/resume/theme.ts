@@ -11,7 +11,7 @@ function font(file: string): string | null {
 }
 
 export interface ResumeTheme {
-  id: "ats" | "portfolio";
+  id: "ats" | "ats-onepage" | "portfolio";
   fileName: string;
   /** null = leave the page white. */
   background: string | null;
@@ -33,6 +33,11 @@ export interface ResumeTheme {
   mono: string;
   /** Drawn down the outer edge of each page. Decoration only. */
   edgeBar: boolean;
+  /**
+   * Applies `compactPlan` from the content file and tightens type, to land the
+   * whole document on one page. Content is cut, never reworded.
+   */
+  compact: boolean;
 }
 
 /**
@@ -56,6 +61,21 @@ export const atsTheme: ResumeTheme = {
   display: "Helvetica-Bold",
   mono: "Helvetica",
   edgeBar: false,
+  compact: false,
+};
+
+/**
+ * Same document, cut to a single page.
+ *
+ * Google's published guidance is one page per ten years of experience, so the
+ * two-page file is a mild negative there. Everything else about this build is
+ * identical to `atsTheme` — it is the content plan that differs, not the look.
+ */
+export const onePageTheme: ResumeTheme = {
+  ...atsTheme,
+  id: "ats-onepage",
+  fileName: "Sumon-Nath-Resume-OnePage.pdf",
+  compact: true,
 };
 
 /**
@@ -87,6 +107,7 @@ export const portfolioTheme: ResumeTheme = {
   display: "Display",
   mono: "Mono",
   edgeBar: true,
+  compact: false,
 };
 
 /**

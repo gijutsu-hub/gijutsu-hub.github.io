@@ -1,5 +1,5 @@
 /**
- * The two published resume files.
+ * The three published resume files.
  *
  * `ats` is the default everywhere. The themed file exists because it looks
  * like the rest of the site, not because it is better — uploading it to a job
@@ -22,6 +22,12 @@ export const resumeVariants = {
     download: "Sumon-Nath-Resume.pdf",
     label: "Download resume",
     note: "PDF · 2 pages · ATS-friendly",
+  },
+  onePage: {
+    href: "/Sumon-Nath-Resume-OnePage.pdf",
+    download: "Sumon-Nath-Resume-OnePage.pdf",
+    label: "One-page version",
+    note: "Same document cut to a single page. Google's own guidance is one page per ten years of experience.",
   },
   themed: {
     href: "/Sumon-Nath-Resume-Portfolio.pdf",
