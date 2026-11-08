@@ -52,11 +52,11 @@ export const resumeHeader = {
 } as const;
 
 export const resumeSummary =
-  "Offensive security engineer with 3+ years and 100+ penetration tests delivered across banking and financial services (BFSI), fintech, e-commerce, government and enterprise environments. Microsoft Most Valuable Security Researcher 2022 and 2023, with five assigned Common Vulnerabilities and Exposures (CVE) identifiers and vulnerabilities accepted by Microsoft, Google, Apple and NASA. Runs full-lifecycle Vulnerability Assessment and Penetration Testing (VAPT) and MITRE ATT&CK-aligned red team operations against web, Application Programming Interface (API), mobile, thick-client and network targets — and builds the defensive counterpart: secure code review, Static Application Security Testing (SAST) tooling, Continuous Integration/Continuous Deployment (CI/CD) security gates and cloud security posture management on Amazon Web Services (AWS) and Google Cloud Platform (GCP).";
+  "Offensive security engineer with 3+ years and 100+ penetration tests delivered across banking and financial services (BFSI), fintech, ecommerce, government and enterprise environments. Microsoft Most Valuable Security Researcher 2022 and 2023, with five assigned Common Vulnerabilities and Exposures (CVE) identifiers and vulnerabilities accepted by Microsoft, Google, Apple and NASA. Runs full lifecycle Vulnerability Assessment and Penetration Testing (VAPT) and MITRE ATT&CK-aligned red team operations against web, Application Programming Interface (API), mobile, thick-client and network targets — and builds the defensive counterpart: secure code review, Static Application Security Testing (SAST) tooling, Continuous Integration/Continuous Deployment (CI/CD) security gates and cloud security posture management on Amazon Web Services (AWS) and Google Cloud Platform (GCP).";
 
 /** The one-page variant needs this to fit in roughly three lines. */
 export const resumeSummaryShort =
-  "Offensive security engineer with 3+ years and 100+ penetration tests delivered across banking and financial services (BFSI), fintech, government and enterprise environments. Microsoft Most Valuable Security Researcher 2022 and 2023, five assigned Common Vulnerabilities and Exposures (CVE) identifiers, and vulnerabilities accepted by Microsoft, Google, Apple and NASA. Full-lifecycle Vulnerability Assessment and Penetration Testing (VAPT), MITRE ATT&CK red team operations, secure code review and cloud security engineering.";
+  "Offensive security engineer with 3+ years and 100+ penetration tests delivered across banking and financial services (BFSI), fintech, government and enterprise environments. Microsoft Most Valuable Security Researcher 2022 and 2023, five assigned Common Vulnerabilities and Exposures (CVE) identifiers, and vulnerabilities accepted by Microsoft, Google, Apple and NASA. Full lifecycle Vulnerability Assessment and Penetration Testing (VAPT), MITRE ATT&CK red team operations, secure code review and cloud security engineering.";
 
 /**
  * Sits directly under the summary.
@@ -99,7 +99,7 @@ export const resumeRoles: ResumeRole[] = [
       "Gave detection engineering a reproducible ground truth by reverse-engineering disclosed CVEs into working proof-of-concept exploits and shipping them as deterministic test cases in instrumented sandbox environments.",
       "Reduced false positives in SAST and SCA tooling (Checkmarx, Snyk) by authoring custom query rules with purpose-built sink and source definitions, widening true-positive detection coverage at the same time.",
       "Shifted security left across engineering teams by embedding automated scanning, dependency auditing and policy enforcement gates directly into CI/CD pipelines.",
-      "Performed threat modeling, root-cause security debugging and vulnerability research across enterprise application stacks, alongside CIS-aligned server hardening.",
+      "Performed threat modeling, root-cause security debugging and vulnerability research across enterprise application stacks, aligned to CIS Benchmarks for server hardening.",
     ],
   },
   {
@@ -147,18 +147,35 @@ export const resumeSkills: ResumeSection[] = [
       "API Security Testing (REST, GraphQL, SOAP)",
       "Mobile Application Penetration Testing (iOS, Android)",
       "Network Penetration Testing",
+      "Internal and External Infrastructure Testing",
       "Active Directory Security",
+      "Kerberos Attacks",
       "Red Team Operations",
       "Adversary Emulation",
-      "MITRE ATT&CK",
       "Command and Control (C2) Infrastructure",
+      "Initial Access",
       "Privilege Escalation",
       "Lateral Movement",
       "EDR and Antivirus Evasion",
-      "Exploit Development",
-      "Reverse Engineering",
       "Thick Client Testing",
       "Wireless Security",
+      "Firewall and Perimeter Assessment",
+    ],
+  },
+  {
+    heading: "Vulnerability Research and Reverse Engineering",
+    items: [
+      "Vulnerability Research",
+      "Reverse Engineering",
+      "Binary Exploitation",
+      "Exploit Development",
+      "CVE Research and Reproduction",
+      "Proof of Concept (PoC) Development",
+      "Coordinated Vulnerability Disclosure",
+      "Bug Bounty Hunting",
+      "Offensive Tooling Development",
+      "Cryptography",
+      "Digital Forensics",
     ],
   },
   {
@@ -169,14 +186,15 @@ export const resumeSkills: ResumeSection[] = [
       "Dynamic Application Security Testing (DAST)",
       "Software Composition Analysis (SCA)",
       "Software Bill of Materials (SBOM)",
+      "Supply Chain Security",
       "Threat Modeling (STRIDE)",
+      "Secure Software Development Lifecycle (SDLC)",
       "DevSecOps and CI/CD Security",
       "Cloud Security Posture Management (CSPM)",
       "Amazon Web Services (AWS)",
       "Google Cloud Platform (GCP)",
-      "IAM Security",
+      "Identity and Access Management (IAM) Security",
       "Container Security",
-      "Kubernetes Security",
     ],
   },
   {
@@ -185,10 +203,26 @@ export const resumeSkills: ResumeSection[] = [
       "Security Operations Centre (SOC)",
       "Endpoint Detection and Response (EDR)",
       "Detection Engineering",
+      "MITRE ATT&CK Mapping",
       "Threat Intelligence",
       "Incident Response",
       "Log Analysis",
       "Purple Teaming",
+    ],
+  },
+  {
+    heading: "Security Engineering and Automation",
+    items: [
+      "Security Automation",
+      "Attack Surface Management",
+      "Reconnaissance Pipelines",
+      "Machine Learning for Security",
+      "Large Language Model (LLM) Integration",
+      "Full-Stack Development",
+      "REST API Design",
+      "Linux System Hardening",
+      "Technical Report Writing",
+      "Team Leadership and Mentoring",
     ],
   },
   {
@@ -198,15 +232,16 @@ export const resumeSkills: ResumeSection[] = [
       "OWASP Top 10",
       "OWASP Application Security Verification Standard (ASVS)",
       "OWASP API Security Top 10",
-      "CVSS 3.1",
-      "CWE",
+      "OWASP Mobile Top 10",
+      "Common Vulnerability Scoring System (CVSS) 3.1",
+      "Common Weakness Enumeration (CWE)",
       "NIST Cybersecurity Framework",
       "NIST SP 800-115",
+      "Penetration Testing Execution Standard (PTES)",
       "ISO 27001",
       "SEBI CSCRF",
       "CERT-In",
       "CIS Benchmarks",
-      "PTES",
     ],
   },
   {
@@ -221,31 +256,32 @@ export const resumeSkills: ResumeSection[] = [
       "Amass",
       "httpx",
       "MobSF",
+      "Ghidra",
       "Checkmarx",
       "Snyk",
       "Wireshark",
       "Sophos EDR",
       "PyTorch",
-      "Ghidra",
-      "Git",
       "Docker",
+      "Git",
     ],
   },
   {
-    heading: "Programming Languages",
+    heading: "Programming and Scripting",
     items: [
       "Python",
       "C",
       "C++",
       "Go",
       "Rust",
+      "PowerShell",
+      "Bash",
       "JavaScript",
       "TypeScript",
       "SQL",
-      "Bash",
+      "Solidity",
       "Node.js",
       "React",
-      "Solidity",
     ],
   },
 ];
@@ -298,14 +334,19 @@ export const compactPlan = {
   roleBullets: [4, 2, 1],
   /** Per project, in `resumeProjects` order. */
   projectBullets: 1,
-  /** Skill groups to keep, by heading. Detection folds into the others. */
+  /** Skill groups to keep, by heading. The rest fold into these. */
   skillGroups: [
     "Penetration Testing and Red Teaming",
+    "Vulnerability Research and Reverse Engineering",
     "Application and Cloud Security",
-    "Frameworks and Standards",
     "Tools",
-    "Programming Languages",
+    "Programming and Scripting",
   ],
+  /**
+   * Items kept per skill group. The arrays are ordered with the strongest
+   * first, so this is a truthful cut in the same way the bullet limits are.
+   */
+  skillItemsPerGroup: 10,
   /** Dropped entirely — the same facts are already in Highlights. */
   achievements: 0,
 } as const;

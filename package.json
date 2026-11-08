@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "resume": "tsx scripts/build-resume-pdf.ts",
+    "resume": "tsx scripts/build-resume-pdf.ts && tsx scripts/checks/extraction-fidelity.ts",
     "prebuild": "npm run resume && npm run paper",
     "github": "tsx scripts/fetch-github.ts",
     "youtube": "tsx scripts/fetch-youtube.ts",

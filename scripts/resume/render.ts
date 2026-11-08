@@ -82,21 +82,21 @@ interface Metrics {
 }
 
 function metricsFor(theme: ResumeTheme): Metrics {
-  const margin = theme.compact ? 34 : 44;
+  const margin = theme.compact ? 32 : 40;
   const base: Metrics = {
     margin,
     contentWidth: CONTENT_WIDTH_AT(margin),
-    body: 8.6,
-    heading: theme.id === "portfolio" ? 8 : 10,
-    roleTitle: 10,
-    roleMeta: 9,
+    body: 8.3,
+    heading: theme.id === "portfolio" ? 8 : 9.6,
+    roleTitle: 9.8,
+    roleMeta: 8.8,
     name: theme.id === "portfolio" ? 26 : 21,
     tagline: 10,
     contact: theme.id === "portfolio" ? 6.8 : 9,
-    lineGap: 0.35,
-    bulletGap: 2.2,
-    sectionGap: 0.45,
-    blockGap: 0.35,
+    lineGap: 0.3,
+    bulletGap: 2,
+    sectionGap: 0.35,
+    blockGap: 0.3,
   };
 
   if (!theme.compact) return base;
@@ -236,7 +236,12 @@ export function renderResume(rawTheme: ResumeTheme): string {
 function skillGroupsFor(theme: ResumeTheme): ResumeSection[] {
   if (!theme.compact) return resumeSkills;
   const keep = new Set<string>(compactPlan.skillGroups);
-  return resumeSkills.filter((group) => keep.has(group.heading));
+  return resumeSkills
+    .filter((group) => keep.has(group.heading))
+    .map((group) => ({
+      ...group,
+      items: group.items.slice(0, compactPlan.skillItemsPerGroup),
+    }));
 }
 
 function header(doc: Doc, theme: ResumeTheme, m: Metrics) {
@@ -413,21 +418,50 @@ function skills(doc: Doc, theme: ResumeTheme, m: Metrics, groups: ResumeSection[
     if (doc.y > PAGE_HEIGHT - m.margin - 55) doc.addPage();
     doc.x = m.margin;
 
+    if (theme.compact) {
+      // Label inline with the list. Costs nothing vertically, which is the
+      // whole constraint on a one-page budget.
+      doc
+        .font(theme.bodyBold)
+        .fontSize(m.body)
+        .fillColor(theme.ink)
+        .text(`${group.heading}: `, m.margin, doc.y, { continued: true });
+
+      doc
+        .font(theme.body)
+        .fontSize(m.body)
+        .fillColor(theme.muted)
+        .text(group.items.join(", "), { width: m.contentWidth, lineGap: m.lineGap });
+
+      doc.moveDown(0.12);
+      continue;
+    }
+
+    // Label on its own line, list beneath it. The eye can jump between group
+    // names without reading through the previous group's tail, which is the
+    // thing a run-on "Heading: a, b, c, d, …" block makes impossible.
     doc
       .font(theme.bodyBold)
-      .fontSize(m.body)
+      .fontSize(m.body + 0.2)
       .fillColor(theme.ink)
-      .text(`${group.heading}: `, m.margin, doc.y, { continued: true });
+      .text(group.heading, m.margin, doc.y, { width: m.contentWidth });
 
-    // One flowing comma-separated line. Parsers split skills on commas; a
-    // multi-column grid of tags gets read back as one mangled string.
+    doc.moveDown(0.12);
+
+    // Still one flowing comma-separated run. Parsers split skills on commas;
+    // a multi-column grid of tags gets read back as one mangled string, and a
+    // narrow gutter between a label column and a value column gets read as two
+    // columns entirely. Same reason the bullet gutter is kept tight.
     doc
       .font(theme.body)
       .fontSize(m.body)
       .fillColor(theme.muted)
-      .text(group.items.join(", "), { width: m.contentWidth, lineGap: m.lineGap });
+      .text(group.items.join(", "), m.margin, doc.y, {
+        width: m.contentWidth,
+        lineGap: m.lineGap,
+      });
 
-    doc.moveDown(theme.compact ? 0.12 : 0.3);
+    doc.moveDown(0.28);
   }
 }
 
