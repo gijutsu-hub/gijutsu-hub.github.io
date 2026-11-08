@@ -86,8 +86,8 @@ function metricsFor(theme: ResumeTheme): Metrics {
   const base: Metrics = {
     margin,
     contentWidth: CONTENT_WIDTH_AT(margin),
-    body: 8.3,
-    heading: theme.id === "portfolio" ? 8 : 9.6,
+    body: 8.15,
+    heading: theme.id === "portfolio" ? 8 : 9.5,
     roleTitle: 9.8,
     roleMeta: 8.8,
     name: theme.id === "portfolio" ? 26 : 21,
@@ -461,7 +461,7 @@ function skills(doc: Doc, theme: ResumeTheme, m: Metrics, groups: ResumeSection[
         lineGap: m.lineGap,
       });
 
-    doc.moveDown(0.28);
+    doc.moveDown(0.22);
   }
 }
 
