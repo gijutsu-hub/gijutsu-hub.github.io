@@ -29,6 +29,13 @@ jobs:
           node-version: 22
           cache: npm
 
+      # poppler-utils provides pdftotext, which the extraction fidelity check
+      # in the build needs. It is NOT on the runner image by default: without
+      # this the check skips itself with a warning and the deploy publishes
+      # PDFs whose text layer nobody verified.
+      - name: Install poppler-utils
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils
+
       # `ci` not `install`: installs exactly what package-lock.json pins and
       # fails if the lockfile and package.json disagree.
       - name: Install dependencies
